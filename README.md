@@ -45,3 +45,7 @@ ___
 Using the `src/main/resources/schema/schema.graphqls` write out a graphql schema that would query a User and its associated Address using the user id. 
 
 
+## Challenge 4
+___
+Add a RESTful compliant endpoint for updating a User. This should update the user in the database.  
+
