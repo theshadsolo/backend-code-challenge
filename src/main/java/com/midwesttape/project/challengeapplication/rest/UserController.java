@@ -1,4 +1,4 @@
-package com.midwesttape.project.challengeapplication;
+package com.midwesttape.project.challengeapplication.rest;
 
 import com.midwesttape.project.challengeapplication.model.User;
 import com.midwesttape.project.challengeapplication.service.UserService;
