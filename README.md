@@ -2,6 +2,8 @@
 
 A coding challenge built with spring boot to make the code challenge self-contained.
 
+This challenge requires Java 11 to be installed.
+
 ## Checking Out Code
 
 1. Fork the https://github.com/midwest-tape/backend-code-challenge repository into your own account. 
