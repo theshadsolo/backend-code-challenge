@@ -2,7 +2,12 @@
 
 A coding challenge built with spring boot to make the code challenge self-contained.
 
-We can't be as cool as the Node.js kids with their CodeSandbox
+## Checking Out Code
+
+1. Fork the https://github.com/midwest-tape/backend-code-challenge repository into your own account. 
+2. Afterwards checkout your forked repository as normal to your local machine.
+3. Create a branch named `challenge-changes` that will contain the various changes for the challenges.
+4. Make sure you are on the `challenge-changes` branch before making code changes.
 
 ## Running Application
 ___
@@ -26,13 +31,13 @@ Using the migration script `src/main/resources/db/migration/V1__init_db.sql` per
 
 * Create an Address table with the following fields
   * id primary key not null auto increment
-  * address1 - varchar 255
+  * address1 - varchar 255 not null
   * address2 - varchar 255
-  * city - size 255
-  * state - size 100
-  * postal - size 10
+  * city - varchar 255 not null
+  * state - varchar 100 not null
+  * postal - varchar 10 not null
 * Populate the new Address table with 2 records 
-* Each user can have one address associated with it. Update the init script to associate the two new addresses with the two users. 
+* A user can only have one address associated with it. Update the init script to associate the two new addresses with the two different users. Only the user requires an addressId foreign key.
 
 
 ## Challenge 2
@@ -48,4 +53,8 @@ Using the `src/main/resources/schema/schema.graphqls` write out a graphql schema
 ## Challenge 4
 ___
 Add a RESTful compliant endpoint for updating a User. This should update the user in the database.  
+
+## Submit PR
+
+Using Github submit a PR for your `challenge-changes` branch to the original https://github.com/midwest-tape/backend-code-challenge repository.
 
