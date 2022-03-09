@@ -7,8 +7,8 @@ This challenge requires Java 11 to be installed.
 ## Checking Out Code
 
 1. Fork the https://github.com/midwest-tape/backend-code-challenge repository into your own account. 
-2. Afterwards checkout your forked repository as normal to your local machine.
-3. Create a branch named `challenge-changes` that will contain the various changes for the challenges.
+2. Afterwards clone your forked repository as normal to your local machine.
+3. From the `main` branch create a branch named `challenge-changes`. This will contain the various changes for the challenges.
 4. Make sure you are on the `challenge-changes` branch before making code changes.
 
 ## Running Application
