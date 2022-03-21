@@ -15,8 +15,16 @@ public class UserService {
 
     public User user(final Long userId) {
         try {
+
             return template.queryForObject(
-                "select * from Users where id = ?",
+                "select " +
+                    "id, " +
+                    "firstName, " +
+                    "lastName, " +
+                    "username, " +
+                    "password " +
+                    "from User " +
+                    "where id = ?",
                 new BeanPropertyRowMapper<>(User.class),
                 userId
             );

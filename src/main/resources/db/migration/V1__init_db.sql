@@ -1,13 +1,13 @@
-create table Users
+create table User
 (
-    id        int                 not null primary key,
+    id        bigint              not null primary key,
     firstName varchar(255)        not null,
     lastName  varchar(255)        not null,
     username  varchar(255) unique not null,
     password  varchar(255)        not null -- WHAT!? NOT ENCRYPTED!? ;-)
 );
 
-insert into Users
+insert into User
     (id, firstName, lastName, username, password)
 values (1, 'Phil', 'Ingwell', 'PhilIngwell', 'Password123') ,
     (2, 'Anna', 'Conda', 'AnnaConda', 'Password234');
