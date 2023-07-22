@@ -31,9 +31,15 @@ values (1, '1234 Park St.', 'Brooklyn', 'New York', '12345'),
        (2, '5678 Main St.', 'Detroit', 'Michigan', '67890');
 
 update User
-  set addressId = 2
+  set addressId = 1
   where id = 1;
 
 update User
-  set addressId = 1
+  set addressId = 2
   where ID = 2;
+
+
+-- The below record is added strictly for testing purposes.  Delete when done
+insert into User
+    (id, firstName, lastName, username, password)
+values (3, 'Sam', 'Sung', 'SamSung', 'Password345');
