@@ -1,2 +1,21 @@
 type Query {
+    getUserById(id: ID): User
+}
+
+type User {
+    id: ID
+    firstName: String
+    lastName: String
+    userName: String
+    password: String
+    address: Address
+}
+
+type Address {
+    id: ID
+    address1: String
+    address2: String
+    city: String
+    state: String
+    postal: String
 }
