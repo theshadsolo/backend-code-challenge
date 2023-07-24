@@ -26,9 +26,9 @@ insert into User
 values (1, 'Phil', 'Ingwell', 'PhilIngwell', 'Password123') ,
     (2, 'Anna', 'Conda', 'AnnaConda', 'Password234');
 
-insert into Address (id, address1, city, state, postal)
-values (1, '1234 Park St.', 'Brooklyn', 'New York', '12345'),
-       (2, '5678 Main St.', 'Detroit', 'Michigan', '67890');
+insert into Address (address1, city, state, postal)
+values ('1234 Park St.', 'Brooklyn', 'New York', '12345'),
+       ('5678 Main St.', 'Detroit', 'Michigan', '67890');
 
 update User
   set addressId = 1
