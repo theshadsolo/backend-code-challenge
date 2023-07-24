@@ -38,6 +38,7 @@ class UserServiceTest {
     private UserService userService;
 
     User mockedUser;
+    User mockedUserWithoutAddress;
 
     String userUpdateQuery;
     String addressUpdateQuery;
@@ -47,6 +48,7 @@ class UserServiceTest {
     public void beforeEach() {
         userService = new UserService(template, repositoryService);
         mockedUser = createExpectedAndMockedUsers();
+        mockedUserWithoutAddress = createUserWithoutAddress();
         userUpdateQuery = "UPDATE user " +
             "SET firstName = ?" +
             ", lastName = ?" +
@@ -91,44 +93,66 @@ class UserServiceTest {
 
     @Test
     void shouldUpdateUserWithoutAddress() {
+        User expectedUser = createUserWithoutAddress();
+        expectedUser.setUsername("CapNoSwear");
+
         User updatedUser = createUserWithoutAddress();
         updatedUser.setUsername("CapNoSwear");
 
+        mockedUserWithoutAddress.setUsername("CapNoSwear");
+
+        when(template.queryForObject(anyString(), isA(UserRowMapper.class), eq(USER_ID))).thenReturn(mockedUserWithoutAddress);
         doNothing().when(repositoryService).updateUser(updatedUser.getId(), updatedUser, userUpdateQuery, null);
 
-        userService.updateUser(1234L, updatedUser);
+        User actual = userService.updateUser(1234L, updatedUser);
 
         verify(repositoryService).updateUser(updatedUser.getId(), updatedUser, userUpdateQuery, null);
+        assertThat(actual, is(equalTo(expectedUser)));
     }
 
     @Test
     void shouldUpdateUserWithAddress() {
+        User expectedUser = createExpectedAndMockedUsers();
+        expectedUser.setUsername("CapNoSwear");
+
         User updatedUser = createExpectedAndMockedUsers();
         updatedUser.setUsername("CapNoSwear");
 
+        mockedUser.setUsername("CapNoSwear");
+
+        when(template.queryForObject(anyString(), isA(UserRowMapper.class), eq(USER_ID))).thenReturn(mockedUser);
         doNothing().when(repositoryService).updateUser(updatedUser.getId(), updatedUser, userUpdateQuery, updatedUser.getAddress().getId());
         doNothing().when(repositoryService).updateAddress(updatedUser, addressUpdateQuery);
 
-        userService.updateUser(1234L, updatedUser);
+        User actual = userService.updateUser(1234L, updatedUser);
 
         verify(repositoryService).updateUser(updatedUser.getId(), updatedUser, userUpdateQuery, updatedUser.getAddress().getId());
         verify(repositoryService).updateAddress(updatedUser, addressUpdateQuery);
+        assertThat(actual, is(equalTo(expectedUser)));
+
     }
 
     @Test
     void shouldUpdateUserWithNewAddress() {
+        User expectedUser = createExpectedAndMockedUsers();
+        expectedUser.setUsername("CapNoSwear");
+
         User updatedUser = createExpectedAndMockedUsers();
         updatedUser.setUsername("CapNoSwear");
         updatedUser.getAddress().setId(null);
 
+        mockedUser.setUsername("CapNoSwear");
+
+        when(template.queryForObject(anyString(), isA(UserRowMapper.class), eq(USER_ID))).thenReturn(mockedUser);
         when(keyHolder.getKey()).thenReturn(1234L);
         doNothing().when(repositoryService).updateUser(updatedUser.getId(), updatedUser, userUpdateQuery, updatedUser.getAddress().getId());
         when(repositoryService.createNewAddress(eq(updatedUser), any(), eq(createNewAddressQuery))).thenReturn(keyHolder);
 
-        userService.updateUser(1234L, updatedUser);
+        User actual = userService.updateUser(1234L, updatedUser);
 
         verify(repositoryService).updateUser(updatedUser.getId(), updatedUser, userUpdateQuery, updatedUser.getAddress().getId());
         verify(repositoryService).createNewAddress(eq(updatedUser), any(), eq(createNewAddressQuery));
+        assertThat(actual, is(equalTo(expectedUser)));
     }
 
     private User createExpectedAndMockedUsers() {
